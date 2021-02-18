@@ -2,12 +2,12 @@ import { IsNotEmpty } from 'class-validator';
 
 export class CreateUserDto {
 
-  @IsNotEmpty()
+  @IsNotEmpty({message: "username không được rỗng"})
   readonly username: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({message: "Định dạnh email không đúng"})
   readonly email: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({message: "Password không được trống"})
   readonly password: string;
 }

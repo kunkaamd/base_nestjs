@@ -3,4 +3,5 @@ WORKDIR /usr/src/app
 COPY . .
 RUN npm i -g @nestjs/cli
 RUN npm install
-CMD ["npm", "run", "start:dev"]
+RUN npm install bcrypt
+CMD ["npm", "run", "start:debug"]
