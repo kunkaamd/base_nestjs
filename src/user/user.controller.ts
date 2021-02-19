@@ -1,17 +1,18 @@
-import { Controller, Get, Post, Body, Put, Param, Delete, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, UseInterceptors, UploadedFile, ValidationPipe, UsePipes } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { imageFileConfig } from 'src/utils/file.storage';
 
 @Controller('/api/v1/user')
 export class UsersController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  @UseInterceptors(FileInterceptor('avatar'))
+  @UseInterceptors(FileInterceptor('avatar',imageFileConfig))
   create(@Body() createUserDto: CreateUserDto,@UploadedFile() avatar) {
-    return "create";
+    return this.userService.create(createUserDto, avatar.path);
   }
 
   /*@Get()
