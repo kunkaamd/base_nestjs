@@ -4,6 +4,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { imageFileConfig } from 'src/utils/file.storage';
+import { ConfigService } from '@nestjs/config';
 
 @Controller('/api/v1/user')
 export class UsersController {

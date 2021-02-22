@@ -40,14 +40,7 @@ export class UserService {
     await this.userRepository.delete(id);
   }
 
-  async findById(id: string) {
-    const user = await this.userRepository.findOne(id);
-
-    if (!user) {
-      const errors = {User: ' not found'};
-      throw new HttpException({errors}, 401);
-    }
-
-    return user
+  findByEmail(email: string): Promise<UserEntity> {
+    return this.userRepository.findOne({email: email});
   }
 }
