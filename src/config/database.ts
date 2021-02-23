@@ -11,7 +11,7 @@ export const databaseConfig = (config: ConfigService) :TypeOrmModuleOptions  => 
         database: config.get<string>("DATABASE_NAME"),
         entities: ["dist/**/*.entity{.ts,.js}"],
         migrations: ["migration/*.js"],
-        synchronize: true,
+        synchronize: config.get<boolean>("DATABASE_SYNC"),
         cli: {
             "migrationsDir": "migration"
         }
