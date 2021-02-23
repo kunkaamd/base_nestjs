@@ -22,7 +22,7 @@ const editFileName = (req,file,callback) => {
 export const imageFileConfig : MulterOptions = {
     fileFilter: imageFileFilter,
     storage: diskStorage({
-        destination: "./assets/images",
+        destination: "./public/images",
         filename: editFileName,
     })
 }

@@ -8,6 +8,9 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ENV } from './utils/constants';
 import { databaseConfig } from './config/database';
+import { UniqueDB } from './utils/unique.validator';
+import { join } from 'path';
+import { ServeStaticModule } from '@nestjs/serve-static';
 
 
 @Module({
@@ -20,11 +23,14 @@ import { databaseConfig } from './config/database';
       inject: [ConfigService],
       useFactory: databaseConfig
     }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '../..', 'public'),
+    }),
     UserModule,
     AuthModule
     ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService,UniqueDB],
 })
 export class AppModule {
   constructor(private readonly connection: Connection) {}
