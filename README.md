@@ -38,3 +38,11 @@ $ npm run typeorm migration:run
 
 # in situation if env is development sync => true else false for production
 ```
+## nest generate
+see in https://docs.nestjs.com/cli/usages#nest-generate
+
+```bash
+$ nest g <schematic> <name> [options]
+# example nest g module catModule
+```
+
