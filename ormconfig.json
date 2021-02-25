@@ -7,7 +7,6 @@
     "database": "nestjs",
     "entities": ["dist/**/*.entity{.ts,.js}"],
     "migrations": ["migration/*.js"],
-  
     "cli": {
         "migrationsDir": "migration"
     }

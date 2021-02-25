@@ -9,7 +9,7 @@
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
+    "start": "NODE_ENV=development nest start",
     "start:dev": "NODE_ENV=development nest start --watch",
     "start:debug": "NODE_ENV=development nest start --debug 0.0.0.0 --watch",
     "start:prod": "NODE_ENV=production node dist/src/main",
@@ -30,6 +30,7 @@
     "@nestjs/passport": "^7.1.5",
     "@nestjs/platform-express": "^7.5.1",
     "@nestjs/serve-static": "^2.1.4",
+    "@nestjs/swagger": "^4.7.15",
     "@nestjs/typeorm": "^7.1.5",
     "bcrypt": "^5.0.0",
     "class-transformer": "^0.4.0",
@@ -42,6 +43,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
+    "swagger-ui-express": "^4.1.6",
     "typeorm": "^0.2.30"
   },
   "devDependencies": {
