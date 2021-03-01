@@ -1,6 +1,8 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { HttpException, Injectable, SerializeOptions } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
+import { plainToClass } from 'class-transformer';
+import { CatEntity } from 'src/cat/entities/cat.entity';
 import { Repository, UpdateResult } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -16,11 +18,7 @@ export class UserService {
 
   create(dto: CreateUserDto,image: string): Promise<UserEntity> {
     let user:UserEntity = new UserEntity();
-    user.email = dto.email;
-    user.password = dto.password;
-    user.username = dto.username;
-    user.bio = "";
-    user.image = image;
+    user = plainToClass(UserEntity,dto);
     return this.userRepository.save(user);
   }
 
@@ -33,14 +31,14 @@ export class UserService {
   }
 
   findOne(id: string): Promise<UserEntity> {
-    return this.userRepository.findOne(id);
+    return this.userRepository.findOne(id,{relations: ['cats']});
   }
 
   async remove(id: string): Promise<void> {
     await this.userRepository.delete(id);
   }
 
-  findByEmail(email: string): Promise<UserEntity> {
-    return this.userRepository.findOne({email: email});
+  async findByEmail(email: string): Promise<UserEntity> {
+    return await this.userRepository.findOne({email: email});
   }
 }

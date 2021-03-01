@@ -1,5 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsEmail, IsNotEmpty, Validate } from 'class-validator';
+import { CreateCatDto } from 'src/cat/dto/create-cat.dto';
 import { UniqueDB } from 'src/utils/unique.validator';
 import { UserEntity } from '../entities/user.entity';
 

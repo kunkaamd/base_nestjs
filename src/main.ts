@@ -15,7 +15,6 @@ async function bootstrap() {
     .setTitle('Loc is handsome')
     .setDescription('The API description')
     .setVersion('1.0')
-    .addTag('cats')
     .addBearerAuth(
       { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
       'access-token',

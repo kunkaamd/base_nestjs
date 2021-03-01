@@ -11,6 +11,7 @@ import { databaseConfig } from './config/database';
 import { UniqueDB } from './utils/unique.validator';
 import { join } from 'path';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { CatModule } from './cat/cat.module';
 
 
 @Module({
@@ -27,8 +28,9 @@ import { ServeStaticModule } from '@nestjs/serve-static';
       rootPath: join(__dirname, '../..', 'public'),
     }),
     UserModule,
-    AuthModule
-    ],
+    AuthModule,
+    CatModule
+  ],
   controllers: [AppController],
   providers: [AppService,UniqueDB],
 })
