@@ -16,9 +16,10 @@ export class UserService {
     private configService: ConfigService
   ) {}
 
-  create(dto: CreateUserDto,image: string): Promise<UserEntity> {
+  create(dto: CreateUserDto,image: string, fileUrl: string): Promise<UserEntity> {
     let user:UserEntity = new UserEntity();
     user = plainToClass(UserEntity,dto);
+    user.image = fileUrl;
     return this.userRepository.save(user);
   }
 

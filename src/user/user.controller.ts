@@ -3,7 +3,7 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { imageFileConfig } from 'src/utils/file.storage';
+import { FileUrl, imageFileConfig } from 'src/utils/file.config';
 import { ApiBearerAuth, ApiConsumes, ApiResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
@@ -16,8 +16,8 @@ export class UsersController {
   @UseInterceptors(FileInterceptor('avatar',imageFileConfig))
   // @ApiResponse({ status: 201, type: UserEntity})
   @UseInterceptors(ClassSerializerInterceptor)//this need to class transformer response (example remove password field in resposne)
-  create(@Body() createUserDto: CreateUserDto,@UploadedFile() avatar) {
-    return this.userService.create(createUserDto, avatar.path);
+  create(@Body() createUserDto: CreateUserDto,@UploadedFile() avatar, @FileUrl() fileUrl) {
+    return this.userService.create(createUserDto, avatar.path, fileUrl);
   }
 
   /*@Get()

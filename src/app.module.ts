@@ -26,6 +26,7 @@ import { CatModule } from './cat/cat.module';
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../..', 'public'),
+      serveRoot: '/public',
     }),
     UserModule,
     AuthModule,

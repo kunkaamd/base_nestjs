@@ -1,8 +1,7 @@
-import { MulterModule } from "@nestjs/platform-express";
 import { MulterOptions } from "@nestjs/platform-express/multer/interfaces/multer-options.interface";
 import { extname } from "path";
 import { diskStorage } from 'multer'
-import { ConfigService } from "@nestjs/config";
+import { createParamDecorator, ExecutionContext } from "@nestjs/common";
 
 
 const imageFileFilter = (req, file, callback) => {
@@ -19,10 +18,28 @@ const editFileName = (req,file,callback) => {
     callback(null, `${uniqueSuffix}${fileExtName}`)
 }
 
+const editPathFile = (req, file, callback) => {
+    console.log(file);
+    return "";
+};
+
 export const imageFileConfig : MulterOptions = {
+    preservePath: true,
     fileFilter: imageFileFilter,
     storage: diskStorage({
         destination: "./public/images",
         filename: editFileName,
+        path: editPathFile,
     })
 }
+
+export const FileUrl = createParamDecorator(
+    (data: unknown, ctx: ExecutionContext) => {
+      const request = ctx.switchToHttp().getRequest();
+      const file = request.file;
+      if(file) {
+        return `${process.env.HOST}${file.path}`;
+      }
+      return "";
+    },
+);
