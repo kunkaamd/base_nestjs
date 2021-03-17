@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Put, Param, Delete, UseInterceptors, UploadedFile, ValidationPipe, UsePipes, ClassSerializerInterceptor, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Request, UseInterceptors, UploadedFile, ValidationPipe, UsePipes, ClassSerializerInterceptor, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -6,6 +6,8 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { FileUrl, imageFileConfig } from 'src/utils/file.config';
 import { ApiBearerAuth, ApiConsumes, ApiResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { Role, Roles } from 'src/auth/roles.decorator';
+import { RolesGuard } from 'src/auth/roles.guard';
 
 @Controller('/api/v1/user')
 export class UsersController {
@@ -46,4 +48,12 @@ export class UsersController {
   remove(@Param('id') id: string) {
     return this.userService.remove(id);
   }*/
+
+  @ApiBearerAuth()//this for swagger
+  @Roles(Role.Admin,Role.User)
+  @UseGuards(JwtAuthGuard,RolesGuard)
+  @Get()
+  getProfile(@Request() req) {
+    return req.user;
+  }
 }

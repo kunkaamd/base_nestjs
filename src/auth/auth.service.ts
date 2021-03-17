@@ -25,15 +25,10 @@ export class AuthService {
   }
 
   async login(user: UserEntity) {
-    const payload = {
-      id: user.id,
-      email: user.email,
-      image: user.image,
-      bio: user.bio,
-      username: user.username,
-    }
+    const payload = Object.assign(user);
+    delete payload.password;
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token: this.jwtService.sign({...payload}),
     };
   }
 }

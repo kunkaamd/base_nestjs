@@ -2,6 +2,7 @@ import { BeforeInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 
 import * as bcrypt from 'bcrypt';
 import { CatEntity } from "src/cat/entities/cat.entity";
 import { Exclude } from "class-transformer";
+import { Role } from "src/auth/roles.decorator";
 
 @Entity('user')
 export class UserEntity {
@@ -24,6 +25,13 @@ export class UserEntity {
   @Column()
   @Exclude({toPlainOnly: true})
   password: string;
+
+  @Column({
+    type: "set",
+    enum: Role,
+    default: [Role.User],
+  })
+  roles: Role[];
   
   @BeforeInsert()
   async hashPassword() {

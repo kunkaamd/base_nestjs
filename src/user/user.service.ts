@@ -2,7 +2,6 @@ import { HttpException, Injectable, SerializeOptions } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { plainToClass } from 'class-transformer';
-import { CatEntity } from 'src/cat/entities/cat.entity';
 import { Repository, UpdateResult } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
