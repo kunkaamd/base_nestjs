@@ -12,6 +12,7 @@ import { UniqueDB } from './utils/unique.validator';
 import { join } from 'path';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { CatModule } from './cat/cat.module';
+import { AppGateway } from './socket/event.gateway';
 
 
 @Module({
@@ -24,16 +25,12 @@ import { CatModule } from './cat/cat.module';
       inject: [ConfigService],
       useFactory: databaseConfig
     }),
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '../..', 'public'),
-      serveRoot: '/public',
-    }),
     UserModule,
     AuthModule,
     CatModule
   ],
   controllers: [AppController],
-  providers: [AppService,UniqueDB],
+  providers: [AppService,UniqueDB,AppGateway],
 })
 export class AppModule {
   constructor(private readonly connection: Connection) {}

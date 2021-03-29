@@ -5,18 +5,33 @@ import { ValidationPipe } from '@nestjs/common';
 import { useContainer } from 'class-validator';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { RolesGuard } from './auth/roles.guard';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { join } from 'path';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { ServeStaticOptions } from '@nestjs/platform-express/interfaces/serve-static-options.interface';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   //Validator
   app.useGlobalPipes(new ValidationPipe());
 
   //Security
-  app.use(helmet());
+  // app.use(helmet.contentSecurityPolicy({
+  //   directives:{
+  //     defaultSrc:["'self'"],
+  //     scriptSrc:["'self'",'cdnjs.cloudflare.com','maxcdn.bootstrapcdn.com'],
+  //     styleSrc:["'self'",'maxcdn.bootstrapcdn.com'],
+  //     fontSrc:["'self'",'maxcdn.bootstrapcdn.com']}}));
 
-  //Roles guard
-  // const reflector = app.get( Reflector );
-  // app.useGlobalGuards(new RolesGuard(reflector));
+
+  //folder public
+  app.useStaticAssets(join(__dirname, '../..', 'public'),{
+    prefix: "/public"
+  } as ServeStaticOptions);
+
+  //setup views engine
+  app.setBaseViewsDir(join(__dirname, '../..', 'views'));
+  app.setViewEngine('hbs');
 
   //Run App
   useContainer(app.select(AppModule), { fallbackOnErrors: true });

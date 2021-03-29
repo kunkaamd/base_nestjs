@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post , Request, UseGuards} from '@nestjs/common';
+import { Body, Controller, Get, Post , Render, Request, UseGuards} from '@nestjs/common';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { AppService } from './app.service';
 import { AuthService } from './auth/auth.service';
@@ -13,6 +13,12 @@ export class AppController {
   @Get()
   getHello(): string {
     return this.appService.getHello();
+  }
+
+  @Get('socket')
+  @Render('socket')
+  getSocket() {
+    return {title: "Test socket io"};
   }
   
   @UseGuards(LocalAuthGuard)
