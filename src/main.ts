@@ -16,13 +16,20 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   //Security
-  // app.use(helmet.contentSecurityPolicy({
-  //   directives:{
-  //     defaultSrc:["'self'"],
-  //     scriptSrc:["'self'",'cdnjs.cloudflare.com','maxcdn.bootstrapcdn.com'],
-  //     styleSrc:["'self'",'maxcdn.bootstrapcdn.com'],
-  //     fontSrc:["'self'",'maxcdn.bootstrapcdn.com']}}));
+  app.use(helmet.contentSecurityPolicy({
+    directives:{
+      defaultSrc:["'self'"],
+      scriptSrc:["'self'",'cdnjs.cloudflare.com','maxcdn.bootstrapcdn.com'],
+      styleSrc:["'self'","cdn.jsdelivr.net 'unsafe-inline'"],
+      fontSrc:["'self'",'maxcdn.bootstrapcdn.com'],
+      imgSrc: ["'self'", 'data:', 'validator.swagger.io'],
+    }}));
 
+  // app.use(
+  //   helmet({
+  //     contentSecurityPolicy: false,
+  //   })
+  // );
 
   //folder public
   app.useStaticAssets(join(__dirname, '../..', 'public'),{
