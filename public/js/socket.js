@@ -17,7 +17,6 @@ class MessageModel {
     receivedMessage(message) {
         this.messages.push(message)
         let listMessage = document.getElementById("list-message");
-        listMessage.innerHTML = "";
         let messageLine = document.createElement('li');
         messageLine.appendChild(document.createTextNode(message));
         listMessage.appendChild(messageLine);

@@ -19,7 +19,7 @@ async function bootstrap() {
   app.use(helmet.contentSecurityPolicy({
     directives:{
       defaultSrc:["'self'"],
-      scriptSrc:["'self'",'cdnjs.cloudflare.com','maxcdn.bootstrapcdn.com'],
+      scriptSrc:["'self'",'cdnjs.cloudflare.com',"maxcdn.bootstrapcdn.com 'unsafe-inline'"],
       styleSrc:["'self'","cdn.jsdelivr.net 'unsafe-inline'"],
       fontSrc:["'self'",'maxcdn.bootstrapcdn.com'],
       imgSrc: ["'self'", 'data:', 'validator.swagger.io'],
