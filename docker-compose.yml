@@ -22,3 +22,11 @@ services:
       MYSQL_DATABASE: nestjs
       MYSQL_USER: root
       MYSQL_PASSWORD: 123456
+  nginx:
+    container_name: nestjs_nginx
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+      - 443:443

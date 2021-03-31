@@ -23,6 +23,7 @@ async function bootstrap() {
       styleSrc:["'self'","cdn.jsdelivr.net 'unsafe-inline'"],
       fontSrc:["'self'",'maxcdn.bootstrapcdn.com'],
       imgSrc: ["'self'", 'data:', 'validator.swagger.io'],
+      connectSrc: ["'self'", "http://localhost:3000", "ws://localhost:3000"]
     }}));
 
   // app.use(
