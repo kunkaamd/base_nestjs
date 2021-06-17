@@ -6,7 +6,7 @@
 $ npm install
 
 # if U using docker
-$ docker compose-up -d
+$ docker-compose up -d
 ```
 
 ## CLI

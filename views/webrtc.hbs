@@ -1,0 +1,22 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/public/js/socket.io.min.js"></script>
+</head>
+
+<body>
+    <div style="display: flex; flex-direction: column; align-items: flex-start;">
+        <video id="localvideo" style="background-color: black;" width="300" height="250" autoplay muted playsinline></video>
+        <video id="remoteVideo" autoplay></video>
+        <br>
+        Room: <input type="number" id="roomId">
+        <button id="showVideo">Open camera</button>
+        <button id="stopVideo">Stop camera</button>
+    </div>
+    
+    <script src="/public/js/webrtc.js"></script>
+</body>
+</html>

@@ -8,17 +8,17 @@ class MessageModel {
     }
 
     createSocket() {
-        this.socket = io('http://localhost:3000');
+        this.socket = io('http://localhost');
         this.socket.on('msgToClient', (message) => {
             this.receivedMessage(message)
         })
     }
 
     receivedMessage(message) {
-        this.messages.push(message)
+        this.messages.push(message.payload)
         let listMessage = document.getElementById("list-message");
         let messageLine = document.createElement('li');
-        messageLine.appendChild(document.createTextNode(message));
+        messageLine.appendChild(document.createTextNode(message.payload));
         listMessage.appendChild(messageLine);
     }
 

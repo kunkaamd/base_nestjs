@@ -16,21 +16,21 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   //Security
-  app.use(helmet.contentSecurityPolicy({
-    directives:{
-      defaultSrc:["'self'"],
-      scriptSrc:["'self'",'cdnjs.cloudflare.com',"maxcdn.bootstrapcdn.com 'unsafe-inline'"],
-      styleSrc:["'self'","cdn.jsdelivr.net 'unsafe-inline'"],
-      fontSrc:["'self'",'maxcdn.bootstrapcdn.com'],
-      imgSrc: ["'self'", 'data:', 'validator.swagger.io'],
-      connectSrc: ["'self'", "http://localhost:3000", "ws://localhost:3000"]
-    }}));
+  // app.use(helmet.contentSecurityPolicy({
+  //   directives:{
+  //     defaultSrc:["'self'"],
+  //     scriptSrc:["'self'",'cdnjs.cloudflare.com',"maxcdn.bootstrapcdn.com 'unsafe-inline'"],
+  //     styleSrc:["'self'","cdn.jsdelivr.net 'unsafe-inline'"],
+  //     fontSrc:["'self'",'maxcdn.bootstrapcdn.com'],
+  //     imgSrc: ["'self'", 'data:', 'validator.swagger.io'],
+  //     connectSrc: ["'self'", "http://localhost:3000", "ws://localhost:3000"]
+  //   }}));
 
-  // app.use(
-  //   helmet({
-  //     contentSecurityPolicy: false,
-  //   })
-  // );
+  app.use(
+    helmet({
+      contentSecurityPolicy: false,
+    })
+  );
 
   //folder public
   app.useStaticAssets(join(__dirname, '../..', 'public'),{
