@@ -21,7 +21,7 @@ class WebRTC {
     this.pc.onicecandidate = (event) => {
       if (event.candidate) {
         this.socket.sendMessage({
-          "Candidate":event.candidate
+          "candidate":event.candidate
         });
       }
     };
@@ -42,8 +42,7 @@ class WebRTC {
   receivedMessage = (message) => {
     if(message.payload.isGetMembers == true) {
       this.checkMemberInRoom(message.payload.members);
-    }
-    else if(message.payload.sdp) {
+    } else if(message.payload.sdp) {
       this.setRemoteDescription(message.payload.sdp);
     } else if(message.payload.candidate) {
       this.addIceCandidate(message.payload.candidate);
@@ -130,7 +129,7 @@ class AppSocket {
   }
 
   createSocket() {
-    this.socket = io('http://localhost/');
+    this.socket = io('https://192.168.1.8/');
     this.socket.on('videoChat', (message) => {
       this.receivedMessage(message);
     });

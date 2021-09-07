@@ -45,4 +45,14 @@ see in https://docs.nestjs.com/cli/usages#nest-generate
 $ nest g <schematic> <name> [options]
 # example nest g module catModule
 ```
-
+## if https
+im using mkcert,
+```bash
+brew install mkcert
+brew install nss # if you use Firefox
+mkcert -install  # pls setup before build docker-compose
+mkcert localhost
+```
+you can get CA from directory ${mkcert -CAROOT} to add CA for test Webrtc
+## if http
+pls edit your nginx.conf
