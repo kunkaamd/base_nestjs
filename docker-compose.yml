@@ -10,7 +10,7 @@ services:
       - db
     restart: always
     volumes:
-      - /Users/softone/code/nestjs-project:/usr/src/app
+      - ./:/usr/src/app
   db:
     container_name: nestjs_db
     image: mysql:5.7
@@ -20,7 +20,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 123456
       MYSQL_DATABASE: nestjs
-      MYSQL_USER: root
+      MYSQL_USER: nestjs_root
       MYSQL_PASSWORD: 123456
   nginx:
     container_name: nestjs_nginx
