@@ -13,6 +13,7 @@ import { join } from 'path';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { CatModule } from './cat/cat.module';
 import { AppGateway } from './socket/event.gateway';
+import { HttpModule } from '@nestjs/axios';
 
 
 @Module({
@@ -25,6 +26,7 @@ import { AppGateway } from './socket/event.gateway';
       inject: [ConfigService],
       useFactory: databaseConfig
     }),
+    HttpModule,
     UserModule,
     AuthModule,
     CatModule

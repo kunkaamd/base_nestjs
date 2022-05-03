@@ -12,6 +12,7 @@ import { ServeStaticOptions } from '@nestjs/platform-express/interfaces/serve-st
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  app.enableCors();
   //Validator
   app.useGlobalPipes(new ValidationPipe());
 

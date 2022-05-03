@@ -20,7 +20,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 123456
       MYSQL_DATABASE: nestjs
-      MYSQL_USER: nestjs_root
       MYSQL_PASSWORD: 123456
   nginx:
     container_name: nestjs_nginx

@@ -1,6 +1,6 @@
 ## Base nestjs from Loc handsome
 
-if want try Webrtc example pls check setup https below.
+if want try Webrtc example pls check setup https below or share a web service on your local (localtunnel)
 
 ## Installation
 
@@ -58,3 +58,9 @@ mkcert localhost
 you can get CA from directory ${mkcert -CAROOT} to add CA for test Webrtc
 ## if http
 pls edit your nginx.conf
+
+## share a web service on your local (localtunnel)
+```bash
+npm install -g localtunnel
+lt --port 8000
+```
